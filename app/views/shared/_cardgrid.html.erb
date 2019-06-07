@@ -1,9 +1,15 @@
 <div class="cards">
   <%  @cocktails.each do |cocktail| %>
     <%= link_to cocktail_path(cocktail), class: "nounderline" do  %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+      <% if cocktail.photo.present? %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @article.photo, height: 300, width: 400, crop: :fill %>')">
           <%= cocktail.name%>
-      </div>
+        </div>
+        <% else %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/1842615/pexels-photo-1842615.jpeg?cs=srgb&dl=antioxidant-berries-beverage-1842615.jpg&fm=jpg')">
+          <%= cocktail.name%>
+        </div>
+        <% end %>
     <% end %>
   <% end %>
 </div>
